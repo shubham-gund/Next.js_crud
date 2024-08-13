@@ -94,15 +94,19 @@ export default function Home() {
     <div>
       <Navbar />
       <div className="flex flex-wrap justify-center gap-4 px-4 py-10 ">
-        {items.map(item => (
-          <PostCard
-            key={item._id}
-            title={item.name}
-            description={item.description}
-            onEdit={() => startEditing(item)}
-            onDelete={() => deleteItem(item._id)}
-          />
-        ))}
+        {items.length === 0 ? (
+          <p className="text-gray-500 ">No posts available. Enter the first post!</p>
+        ) : (
+          items.map(item => (
+            <PostCard
+              key={item._id}
+              title={item.name}
+              description={item.description}
+              onEdit={() => startEditing(item)}
+              onDelete={() => deleteItem(item._id)}
+            />
+          ))
+        )}
       </div>
       <button
         className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 bg-blue-700 text-white p-4 rounded-full shadow-lg hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300"
